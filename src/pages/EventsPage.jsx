@@ -1,20 +1,33 @@
 import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { Heading } from "@chakra-ui/react";
-import { NewEventModal } from "../components/NewEventModal";
+// import { NewEventModal } from "../components/NewEventModal";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
   const categories = await fetch("http://localhost:3000/categories");
-  return { events: await events.json(), categories: await categories.json() };
+  const users = await fetch("http://localhost:3000/users");
+
+  return {
+    users: await users.json(),
+    events: await events.json(),
+    categories: await categories.json(),
+  };
 };
 
 export const EventsPage = () => {
   const { events, categories } = useLoaderData();
 
+  // const d = new Date("2015-03-04T13:55:11.000Z");
+
+  // console.log(d.getUTCDay());
+  // console.log(d.getUTCMonth());
+  // console.log(d.getUTCFullYear());
+  // console.log(d.getUTCDate());
+
   return (
     <div className="events-page">
-      <NewEventModal />
+      {/* <NewEventModal /> */}
 
       <Heading>List of events:</Heading>
       {events.map((event) => {

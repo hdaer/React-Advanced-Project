@@ -3,9 +3,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { EventPage } from "./pages/EventPage";
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
+import {
+  NewEventPage,
+  loader as newEventLoader,
+  action as newEventAction,
+} from "./pages/NewEventPage";
+// import {
+//   NewEventForm,
+//   loader as formLoader,
+//   action as addEvent,
+// } from "./utils/NewEventForm";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
-import { BasicDateTimePicker } from "./pages/DatePage";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +33,17 @@ const router = createBrowserRouter([
         // action: addComment,
       },
       {
-        path: "/datepage",
-        element: <BasicDateTimePicker />,
-        // loader: postLoader,
-        // action: addComment,
+        path: "/newevent",
+        element: <NewEventPage />,
+        loader: newEventLoader,
+        action: newEventAction,
       },
+      // {
+      //   path: "/addEvent",
+      //   element: <NewEventForm />,
+      //   loader: formLoader,
+      //   action: addEvent,
+      // },
     ],
   },
 ]);
