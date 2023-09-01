@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Input, Button } from "@chakra-ui/react";
 // import { NewEventModal } from "../components/NewEventModal";
+import { SearchBar } from "../components/ui/SearchBar";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -18,18 +19,44 @@ export const loader = async () => {
 export const EventsPage = () => {
   const { events, categories } = useLoaderData();
 
-  // const d = new Date("2015-03-04T13:55:11.000Z");
+  const initalState = "";
+  const [searchInput, setSearchInput] = useState(initalState);
+  const [eventSearchResults, setEventSearchResults] = useState([]);
 
-  // console.log(d.getUTCDay());
-  // console.log(d.getUTCMonth());
-  // console.log(d.getUTCFullYear());
-  // console.log(d.getUTCDate());
+  const handleClick = () => {
+    const filteredItems = events.filter((event) => {
+      return event.title.toLowerCase().includes(searchInput.toLowerCase());
+    });
+    setEventSearchResults(() => {
+      return filteredItems;
+    });
+    console.log(filteredItems);
+    console.log(eventSearchResults);
+  };
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleReset = () => {
+    setSearchInput(() => initalState);
+    console.log(searchInput);
+  };
+
+  // useEffect = ( , [eventSearchResults])
 
   return (
     <div className="events-page">
       {/* <NewEventModal /> */}
 
       <Heading>List of events:</Heading>
+
+      <SearchBar
+        handleReset={handleReset}
+        handleChange={handleChange}
+        handleClick={handleClick}
+      />
+
       {events.map((event) => {
         return (
           <div key={event.id} className="event">
@@ -38,7 +65,7 @@ export const EventsPage = () => {
               <p>{event.description}</p>
               <img
                 src={event.image}
-                alt={event.description}
+                alt={event.title}
                 width="500"
                 height="600"
               />

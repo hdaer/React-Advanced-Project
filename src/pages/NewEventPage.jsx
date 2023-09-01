@@ -6,14 +6,15 @@ import {
   FormLabel,
   FormControl,
   Input,
+  useToast,
   CheckboxGroup,
   Stack,
   Checkbox,
   Box,
 } from "@chakra-ui/react";
 import { Form, redirect, useLoaderData } from "react-router-dom";
-import { MyDatePicker } from "../utils/DatePicker";
-import { MyTimePicker } from "../utils/TimePicker";
+import { MyDatePicker } from "../components/ui/DatePicker";
+import { MyTimePicker } from "../components/ui/TimePicker";
 import { useState } from "react";
 
 export const action = async ({ request }) => {
@@ -24,7 +25,7 @@ export const action = async ({ request }) => {
     title: formData.title,
     description: formData.description,
     image: formData.image,
-    categoryIds: formData.categoryIds,
+    categoryIds: [Number(formData.categoryIds)],
     location: formData.location,
     startTime: `${formData.date}T${formData.startTime}`,
     endTime: `${formData.date}T${formData.endTime}`,
@@ -58,11 +59,11 @@ export const loader = async () => {
 
 export const NewEventPage = () => {
   const { users, categories } = useLoaderData();
-
+  const toast = useToast();
   return (
     <Flex>
       <Form method="post">
-        <FormControl isRequired>
+        <FormControl>
           <Heading>New Event</Heading>
           <FormLabel>Title</FormLabel>
           <Input type="text" name="title" placeholder="Title" />
@@ -78,7 +79,7 @@ export const NewEventPage = () => {
             placeholder="select category"
           >
             {categories.map((category) => (
-              <option key={category.id} value={Number(category.id)}>
+              <option key={category.id} value={category.id}>
                 {category.name}
               </option>
             ))}
@@ -109,7 +110,29 @@ export const NewEventPage = () => {
             ))}
           </Select>
         </FormControl>
-        <Button type="submit">Add Event</Button>
+        <Button
+          type="submit"
+          onClick={() =>
+            toast({
+              position: "bottom",
+              render: () => (
+                <Box
+                  textAlign="center"
+                  fontSize="25"
+                  fontWeight="bold"
+                  color="white"
+                  p={3}
+                  bg="green.500"
+                  borderRadius="20px"
+                >
+                  Event Created
+                </Box>
+              ),
+            })
+          }
+        >
+          Add Event
+        </Button>
       </Form>
     </Flex>
   );
