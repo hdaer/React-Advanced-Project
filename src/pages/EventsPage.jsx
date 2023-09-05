@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLoaderData, Link } from "react-router-dom";
-import { Heading, Input, Button } from "@chakra-ui/react";
+import { Heading, useCheckboxGroup } from "@chakra-ui/react";
 // import { NewEventModal } from "../components/NewEventModal";
 import { SearchBar } from "../components/ui/SearchBar";
+import { EventCard } from "../components/EventCard";
+import { CategoryFilter } from "../components/ui/CategoryFilter";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -18,32 +20,31 @@ export const loader = async () => {
 
 export const EventsPage = () => {
   const { events, categories } = useLoaderData();
-
-  const initalInputState = "";
-  const [searchInput, setSearchInput] = useState(initalInputState);
-  const initalSearchState = [];
-  const [eventSearchResults, setEventSearchResults] =
-    useState(initalSearchState);
+  const [searchInput, setSearchInput] = useState("");
+  const [eventSearchResults, setEventSearchResults] = useState([]);
 
   const handleClick = () => {
-    const filteredItems = events.filter((event) => {
+    const searchedItems = events.filter((event) => {
       return event.title.toLowerCase().includes(searchInput.toLowerCase());
     });
-    setEventSearchResults(filteredItems);
-    console.log(filteredItems);
-    console.log(eventSearchResults);
+    setEventSearchResults(searchedItems);
   };
 
-  // useEffect = ( , [eventSearchResults])
+  // useEffect(() => {
+  //   console.log(eventSearchResults);
+  // }, [eventSearchResults]);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
 
   const handleReset = () => {
-    // setSearchInput(() => initalInputState);
-    // console.log(searchInput);
+    setSearchInput(() => "");
   };
+
+  // useEffect(() => {
+  //   console.log(searchInput);
+  // }, [searchInput]);
 
   return (
     <div className="events-page">
@@ -57,73 +58,17 @@ export const EventsPage = () => {
         handleClick={handleClick}
       />
 
+      <CategoryFilter categories={categories} />
+
       {eventSearchResults.length === 0
         ? events.map((event) => {
             return (
-              <div key={event.id} className="event">
-                <Link to={`event/${event.id}`}>
-                  <p>{event.title}</p>
-                  <p>{event.description}</p>
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    width="500"
-                    height="600"
-                  />
-                  <p>
-                    start: {event.endTime.substring(0, 10)},{" "}
-                    {event.endTime.substring(11, 16)}
-                  </p>
-                  <p>
-                    end: {event.endTime.substring(0, 10)},{" "}
-                    {event.endTime.substring(11, 16)}
-                  </p>
-                  <p>
-                    Category:{" "}
-                    {event.categoryIds.map((categoryId) => {
-                      return (
-                        <span key={categoryId}>
-                          {categories[Number(categoryId) - 1].name}{" "}
-                        </span>
-                      );
-                    })}
-                  </p>
-                </Link>
-              </div>
+              <EventCard key={event.id} event={event} categories={categories} />
             );
           })
         : eventSearchResults.map((event) => {
             return (
-              <div key={event.id} className="event">
-                <Link to={`event/${event.id}`}>
-                  <p>{event.title}</p>
-                  <p>{event.description}</p>
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    width="500"
-                    height="600"
-                  />
-                  <p>
-                    start: {event.endTime.substring(0, 10)},{" "}
-                    {event.endTime.substring(11, 16)}
-                  </p>
-                  <p>
-                    end: {event.endTime.substring(0, 10)},{" "}
-                    {event.endTime.substring(11, 16)}
-                  </p>
-                  <p>
-                    Category:{" "}
-                    {event.categoryIds.map((categoryId) => {
-                      return (
-                        <span key={categoryId}>
-                          {categories[Number(categoryId) - 1].name}{" "}
-                        </span>
-                      );
-                    })}
-                  </p>
-                </Link>
-              </div>
+              <EventCard key={event.id} event={event} categories={categories} />
             );
           })}
     </div>
