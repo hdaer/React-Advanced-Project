@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useLoaderData, Link } from "react-router-dom";
-import { Heading, useCheckboxGroup } from "@chakra-ui/react";
-// import { NewEventModal } from "../components/NewEventModal";
+import { useLoaderData } from "react-router-dom";
+import { Heading } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
 import { EventCard } from "../components/EventCard";
 import { CategoryFilter } from "../components/ui/CategoryFilter";
@@ -22,6 +21,8 @@ export const EventsPage = () => {
   const { events, categories } = useLoaderData();
   const [searchInput, setSearchInput] = useState("");
   const [eventSearchResults, setEventSearchResults] = useState([]);
+
+  const [filter, setFilter] = useState([]);
 
   const handleClick = () => {
     const searchedItems = events.filter((event) => {
@@ -46,10 +47,13 @@ export const EventsPage = () => {
   //   console.log(searchInput);
   // }, [searchInput]);
 
+  // const [filter, setFilter] = useState([]);
+  // const callback = (filter) => {
+  //   setFilter(filter);
+  // };
+
   return (
     <div className="events-page">
-      {/* <NewEventModal /> */}
-
       <Heading>List of events:</Heading>
 
       <SearchBar
