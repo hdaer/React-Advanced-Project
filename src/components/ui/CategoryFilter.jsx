@@ -10,7 +10,9 @@ import {
   useCheckbox,
 } from "@chakra-ui/react";
 
-export const CategoryFilter = ({ categories }) => {
+import { useEffect } from "react";
+
+export const CategoryFilter = ({ categories, setFilter }) => {
   function CustomCheckbox(props) {
     const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
       useCheckbox(props);
@@ -52,11 +54,14 @@ export const CategoryFilter = ({ categories }) => {
 
   const { value, getCheckboxProps } = useCheckboxGroup();
 
-  const filteredCategories = value.map(Number).sort(function (a, b) {
-    return a - b;
-  });
-
-  // setFilter(filteredCategories);
+  useEffect(() => {
+    setFilter([]);
+    const filteredCategories = value.map(Number).sort(function (a, b) {
+      return a - b;
+    });
+    setFilter(filteredCategories);
+    // console.log(filteredCategories);
+  }, [value]);
 
   return (
     <CheckboxGroup colorScheme="blue">

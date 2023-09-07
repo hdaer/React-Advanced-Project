@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Heading } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
@@ -21,8 +21,6 @@ export const EventsPage = () => {
   const { events, categories } = useLoaderData();
   const [searchInput, setSearchInput] = useState("");
   const [eventSearchResults, setEventSearchResults] = useState([]);
-
-  const [filter, setFilter] = useState([]);
 
   const handleClick = () => {
     const searchedItems = events.filter((event) => {
@@ -47,10 +45,9 @@ export const EventsPage = () => {
   //   console.log(searchInput);
   // }, [searchInput]);
 
-  // const [filter, setFilter] = useState([]);
-  // const callback = (filter) => {
-  //   setFilter(filter);
-  // };
+  const [filter, setFilter] = useState([]);
+
+  useEffect(() => console.log(filter), [filter]);
 
   return (
     <div className="events-page">
@@ -62,7 +59,7 @@ export const EventsPage = () => {
         handleClick={handleClick}
       />
 
-      <CategoryFilter categories={categories} />
+      <CategoryFilter categories={categories} setFilter={setFilter} />
 
       {eventSearchResults.length === 0
         ? events.map((event) => {

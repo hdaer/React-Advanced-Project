@@ -10,6 +10,7 @@ import {
   loader as newEventLoader,
   action as newEventAction,
 } from "./pages/NewEventPage";
+import { TestPage } from "./pages/TestPage";
 // import {
 //   NewEventForm,
 //   loader as formLoader,
@@ -37,6 +38,12 @@ const router = createBrowserRouter([
         element: <NewEventPage />,
         loader: newEventLoader,
         action: newEventAction,
+      },
+      {
+        path: "/testpage",
+        element: <TestPage />,
+        // loader: newEventLoader,
+        // action: newEventAction,
       },
       // {
       //   path: "/addEvent",
