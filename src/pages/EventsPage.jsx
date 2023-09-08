@@ -20,13 +20,13 @@ export const loader = async () => {
 export const EventsPage = () => {
   const { events, categories } = useLoaderData();
   const [searchInput, setSearchInput] = useState("");
-  const [eventSearchResults, setEventSearchResults] = useState([]);
+  const [searchedEvents, setSearchedEvents] = useState([]);
 
   const handleClick = () => {
     const searchedItems = events.filter((event) => {
       return event.title.toLowerCase().includes(searchInput.toLowerCase());
     });
-    setEventSearchResults(searchedItems);
+    setSearchedEvents(searchedItems);
   };
 
   // useEffect(() => {
@@ -45,9 +45,28 @@ export const EventsPage = () => {
   //   console.log(searchInput);
   // }, [searchInput]);
 
-  const [filter, setFilter] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  // const [filteredEvents, setFilteredEvents] = useState([]);
 
-  useEffect(() => console.log(filter), [filter]);
+  // useEffect(() => {
+  //   setFilteredEvents(() => {
+  //     events.filter((event) => {
+  //       return event.categoryIds.some((categoryId) => {
+  //         return categoryFilter.includes(categoryId);
+  //       });
+  //     });
+  //   });
+  // }, [categoryFilter]);
+
+  const filteredEvents = events.filter((event) => {
+    return event.categoryIds.some((categoryId) => {
+      return categoryFilter.includes(categoryId);
+    });
+  });
+
+  const filteredAndSearchedEvents = filteredEvents.filter((x) =>
+    searchedEvents.includes(x)
+  );
 
   return (
     <div className="events-page">
@@ -59,19 +78,32 @@ export const EventsPage = () => {
         handleClick={handleClick}
       />
 
-      <CategoryFilter categories={categories} setFilter={setFilter} />
+      <CategoryFilter
+        categories={categories}
+        setCategoryFilter={setCategoryFilter}
+      />
 
-      {eventSearchResults.length === 0
-        ? events.map((event) => {
-            return (
-              <EventCard key={event.id} event={event} categories={categories} />
-            );
-          })
-        : eventSearchResults.map((event) => {
-            return (
-              <EventCard key={event.id} event={event} categories={categories} />
-            );
-          })}
+      {searchedEvents.length !== 0 &&
+        searchedEvents.map((event) => {
+          return (
+            <EventCard key={event.id} event={event} categories={categories} />
+          );
+        })}
+
+      {filteredEvents.length !== 0 &&
+        filteredEvents.map((event) => {
+          return (
+            <EventCard key={event.id} event={event} categories={categories} />
+          );
+        })}
+
+      {searchedEvents.length === 0 &&
+        filteredEvents.length === 0 &&
+        events.map((event) => {
+          return (
+            <EventCard key={event.id} event={event} categories={categories} />
+          );
+        })}
     </div>
   );
 };

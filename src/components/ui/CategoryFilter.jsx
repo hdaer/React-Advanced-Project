@@ -12,7 +12,7 @@ import {
 
 import { useEffect } from "react";
 
-export const CategoryFilter = ({ categories, setFilter }) => {
+export const CategoryFilter = ({ categories, setCategoryFilter }) => {
   function CustomCheckbox(props) {
     const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
       useCheckbox(props);
@@ -55,11 +55,11 @@ export const CategoryFilter = ({ categories, setFilter }) => {
   const { value, getCheckboxProps } = useCheckboxGroup();
 
   useEffect(() => {
-    setFilter([]);
+    setCategoryFilter([]);
     const filteredCategories = value.map(Number).sort(function (a, b) {
       return a - b;
     });
-    setFilter(filteredCategories);
+    setCategoryFilter(filteredCategories);
     // console.log(filteredCategories);
   }, [value]);
 
