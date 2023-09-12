@@ -7,9 +7,6 @@ import {
   FormControl,
   Input,
   useToast,
-  CheckboxGroup,
-  Stack,
-  Checkbox,
   Box,
 } from "@chakra-ui/react";
 import { Form, redirect, useLoaderData } from "react-router-dom";

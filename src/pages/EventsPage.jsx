@@ -104,6 +104,13 @@ export const EventsPage = () => {
             <EventCard key={event.id} event={event} categories={categories} />
           );
         })}
+
+      {filteredAndSearchedEvents.length === 0 &&
+        filteredAndSearchedEvents.map((event) => {
+          return (
+            <EventCard key={event.id} event={event} categories={categories} />
+          );
+        })}
     </div>
   );
 };

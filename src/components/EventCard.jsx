@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const EventCard = ({ event, categories }) => {
   return (
-    <div key={event.id} className="event">
+    <div key={event.id} className="eventcard">
       <Link to={`event/${event.id}`}>
         <p>{event.title}</p>
         <p>{event.description}</p>

@@ -3,7 +3,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Root } from "./components/Root";
-import { EventPage } from "./pages/EventPage";
+import {
+  EventPage,
+  loader as eventLoader,
+  // action as eventAction,
+} from "./pages/EventPage";
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
 import {
   NewEventPage,
@@ -11,6 +15,7 @@ import {
   action as newEventAction,
 } from "./pages/NewEventPage";
 import { TestPage } from "./pages/TestPage";
+import { DeleteModal } from "./components/DeleteModal";
 // import {
 //   NewEventForm,
 //   loader as formLoader,
@@ -30,8 +35,8 @@ const router = createBrowserRouter([
       {
         path: "/event/:eventId",
         element: <EventPage />,
-        // loader: postLoader,
-        // action: addComment,
+        loader: eventLoader,
+        // action: eventAction,
       },
       {
         path: "/newevent",
@@ -45,12 +50,12 @@ const router = createBrowserRouter([
         // loader: newEventLoader,
         // action: newEventAction,
       },
-      // {
-      //   path: "/addEvent",
-      //   element: <NewEventForm />,
-      //   loader: formLoader,
-      //   action: addEvent,
-      // },
+      {
+        path: "/event/:eventId",
+        element: <DeleteModal />,
+        // loader: formLoader,
+        // action: deleteAction,
+      },
     ],
   },
 ]);

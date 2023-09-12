@@ -13,7 +13,7 @@ export const MyDatePicker = ({ name }) => {
   };
 
   return (
-    <div>
+    <>
       <DatePicker
         onChange={onChange}
         clearIcon={null}
@@ -24,6 +24,6 @@ export const MyDatePicker = ({ name }) => {
         locale="en-DE"
         format="dd/M/yyyy"
       />
-    </div>
+    </>
   );
 };
