@@ -57,7 +57,7 @@ export const EditEventForm = () => {
             <FormLabel>Category</FormLabel>
             <Select name="categoryIds" placeholder="select category">
               {categories.map((category) => (
-                <option key="category.id" value={category.id}>
+                <option key={category.id} value={category.id}>
                   {category.name}
                 </option>
               ))}
@@ -92,7 +92,7 @@ export const EditEventForm = () => {
             <FormLabel>event created by ... </FormLabel>
             <Select name="createdBy" placeholder="select user">
               {users.map((user) => (
-                <option key="user.id">{user.name}</option>
+                <option key={user.id}>{user.name}</option>
               ))}
             </Select>
           </GridItem>

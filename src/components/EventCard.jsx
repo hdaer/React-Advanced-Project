@@ -18,15 +18,10 @@ export const EventCard = ({ event, categories }) => {
         <p>
           Category:{" "}
           {categories.map((category) => {
-            return (
-              <>
-                {event.categoryIds.includes(category.id) && (
-                  <span key={category.id}>{category.name} </span>
-                )}
-              </>
-            );
+            return event.categoryIds.includes(category.id) ? (
+              <span key={category.id}>{category.name} </span>
+            ) : null;
           })}
-          \
         </p>
       </Link>
     </div>

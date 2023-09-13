@@ -10,7 +10,7 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import { redirect, useLoaderData } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 
 // export const action = async () => {
 //   const handleClick = (eventId) => {
@@ -26,6 +26,7 @@ import { redirect, useLoaderData } from "react-router-dom";
 
 export const DeleteModal = ({ eventId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     await fetch(`http://localhost:3000/events/${eventId}`, {
@@ -33,8 +34,7 @@ export const DeleteModal = ({ eventId }) => {
     });
     //   .then((res) => res.json())
     //   .then((res) => console.log(res));
-
-    return redirect(`/`);
+    navigate("/");
   };
 
   return (
@@ -49,7 +49,7 @@ export const DeleteModal = ({ eventId }) => {
           <Flex flexDirection={"row"} rowGap={"10px"}>
             <ModalBody>
               <span>Do you really want to delete this event?</span>
-              <Button variant="solid" onClick={handleClick}>
+              <Button variant="solid" onClick={() => handleClick()}>
                 Delete
               </Button>
             </ModalBody>

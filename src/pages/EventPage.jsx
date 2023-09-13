@@ -42,23 +42,17 @@ export const EventPage = () => {
         <p>
           Category:{" "}
           {categories.map((category) => {
-            return (
-              <>
-                {event.categoryIds.includes(category.id) && (
-                  <span key={category.id}>{category.name} </span>
-                )}
-              </>
-            );
+            return event.categoryIds.includes(category.id) ? (
+              <span key={category.id}>{category.name} </span>
+            ) : null;
           })}
         </p>
         <p>
           created by:{" "}
           {users.map((user) => {
-            return (
-              event.createdBy == user.id && (
-                <span key={user.id}>{user.name}</span>
-              )
-            );
+            return event.createdBy == user.id ? (
+              <span key={user.id}>{user.name}</span>
+            ) : null;
           })}
         </p>
 
