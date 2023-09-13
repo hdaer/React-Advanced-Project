@@ -28,8 +28,6 @@ export const action = async ({ request }) => {
     endTime: `${formData.date}T${formData.endTime}`,
   };
 
-  console.log(newEventFormData);
-
   const newId = await fetch("http://localhost:3000/events", {
     method: "POST",
     body: JSON.stringify(newEventFormData),
@@ -38,8 +36,8 @@ export const action = async ({ request }) => {
     .then((res) => res.json())
     .then((json) => json.id);
 
-  return redirect(`/newevent`);
-  // return redirect(`/event/${newId}`);
+  // return redirect(`/newevent`);
+  return redirect(`/event/${newId}`);
 };
 
 export const loader = async () => {

@@ -17,13 +17,16 @@ export const EventCard = ({ event, categories }) => {
         </p>
         <p>
           Category:{" "}
-          {event.categoryIds.map((categoryId) => {
+          {categories.map((category) => {
             return (
-              <span key={categoryId}>
-                {categories[Number(categoryId) - 1].name}{" "}
-              </span>
+              <>
+                {event.categoryIds.includes(category.id) && (
+                  <span key={category.id}>{category.name} </span>
+                )}
+              </>
             );
           })}
+          \
         </p>
       </Link>
     </div>

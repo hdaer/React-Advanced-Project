@@ -27,8 +27,8 @@ import { redirect, useLoaderData } from "react-router-dom";
 export const DeleteModal = ({ eventId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleClick = () => {
-    fetch(`http://localhost:3000/events/${eventId}`, {
+  const handleClick = async () => {
+    await fetch(`http://localhost:3000/events/${eventId}`, {
       method: "DELETE",
     });
     //   .then((res) => res.json())

@@ -41,15 +41,26 @@ export const EventPage = () => {
         </p>
         <p>
           Category:{" "}
-          {event.categoryIds.map((categoryId) => {
+          {categories.map((category) => {
             return (
-              <span key={categoryId}>
-                {categories[Number(categoryId) - 1].name}{" "}
-              </span>
+              <>
+                {event.categoryIds.includes(category.id) && (
+                  <span key={category.id}>{category.name} </span>
+                )}
+              </>
             );
           })}
         </p>
-        <p>created by: {users[event.createdBy - 1].name}</p>
+        <p>
+          created by:{" "}
+          {users.map((user) => {
+            return (
+              event.createdBy == user.id && (
+                <span key={user.id}>{user.name}</span>
+              )
+            );
+          })}
+        </p>
 
         <EditModal />
         <DeleteModal eventId={params.eventId} />
