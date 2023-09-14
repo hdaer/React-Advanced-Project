@@ -1,6 +1,4 @@
 import {
-  Stack,
-  Checkbox,
   CheckboxGroup,
   chakra,
   Flex,
@@ -60,25 +58,25 @@ export const CategoryFilter = ({ categories, setCategoryFilter }) => {
       return a - b;
     });
     setCategoryFilter(filteredCategories);
-    // console.log(filteredCategories);
   }, [value]);
 
   return (
     <CheckboxGroup colorScheme="blue">
-      <Stack spacing={[1, 5]} direction={["column", "row"]}>
+      <Flex
+        justifyContent={"center"}
+        flexDirection={"column"}
+        gap={"0.5rem"}
+        margin={"0.2rem"}
+      >
         {categories.map((category) => {
           return (
             <CustomCheckbox
               key={category.id}
               {...getCheckboxProps({ value: category.id, name: category.name })}
             />
-
-            // <Checkbox key={category.id} value={category.name}>
-            //   {category.name}
-            // </Checkbox>
           );
         })}
-      </Stack>
+      </Flex>
     </CheckboxGroup>
   );
 };

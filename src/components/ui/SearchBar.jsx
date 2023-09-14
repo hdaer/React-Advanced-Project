@@ -7,11 +7,10 @@ import {
 } from "@chakra-ui/react";
 
 import { Search2Icon } from "@chakra-ui/icons";
-import { useState } from "react";
 
 export const SearchBar = ({ handleReset, handleChange, handleClick }) => {
   return (
-    <InputGroup size="md">
+    <InputGroup maxW={"40rem"} size="md" marginTop={"0.5rem"}>
       <InputLeftElement pointerEvents="none">
         <Search2Icon color="gray.300" />
       </InputLeftElement>
@@ -22,10 +21,16 @@ export const SearchBar = ({ handleReset, handleChange, handleClick }) => {
         onChange={handleChange}
       />
       <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" onClick={handleClick}>
+        <Button h="1.75rem" size="md" onClick={handleClick} margin={"0.2rem"}>
           Search
         </Button>
-        <Button h="1.75rem" size="sm" onClick={handleReset}>
+        <Button
+          w={"2rem"}
+          h="1.75rem"
+          size="md"
+          onClick={handleReset}
+          margin={"0.2rem"}
+        >
           Reset
         </Button>
       </InputRightElement>

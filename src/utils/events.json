@@ -64,6 +64,19 @@
       "startTime": "2023-11-17T13:00",
       "endTime": "2023-11-17T16:00",
       "id": 5
+    },
+    {
+      "createdBy": 2,
+      "title": "testEvent",
+      "description": "write your story here",
+      "image": "https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_HyperLightDrifterSpecialEdition_enGB_image1600w.jpg",
+      "categoryIds": [
+        2
+      ],
+      "location": "amsterdam",
+      "startTime": "2024-09-14T12:52",
+      "endTime": "2024-09-14T14:52",
+      "id": 6
     }
   ],
   "categories": [
