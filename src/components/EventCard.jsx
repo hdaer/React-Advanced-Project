@@ -18,9 +18,16 @@ export const EventCard = ({ event, categories }) => {
   return (
     <Flex flexDirection={"row"} gap={"3em"}>
       <Link to={`event/${event.id}`}>
-        <Card margin={"2"} height={"400px"} maxW="sm">
+        <Card margin={"2"} height={"400px"} width={"300px"}>
           <CardBody>
-            <Image src={event.image} alt={event.title} borderRadius="lg" />
+            <Image
+              src={event.image}
+              alt={event.title}
+              w="100%"
+              h="12rem"
+              objectFit="cover"
+              borderRadius="lg"
+            />
             <Stack mt="6" spacing="3">
               <Heading size="md">{event.title}</Heading>
               <Text>{event.description}</Text>

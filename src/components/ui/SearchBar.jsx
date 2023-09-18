@@ -8,7 +8,7 @@ import {
 
 import { Search2Icon } from "@chakra-ui/icons";
 
-export const SearchBar = ({ handleReset, handleChange, handleClick }) => {
+export const SearchBar = ({ handleChange, handleClick }) => {
   return (
     <InputGroup maxW={"40rem"} size="md" marginTop={"0.5rem"}>
       <InputLeftElement pointerEvents="none">
@@ -23,15 +23,6 @@ export const SearchBar = ({ handleReset, handleChange, handleClick }) => {
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="md" onClick={handleClick} margin={"0.2rem"}>
           Search
-        </Button>
-        <Button
-          w={"2rem"}
-          h="1.75rem"
-          size="md"
-          onClick={handleReset}
-          margin={"0.2rem"}
-        >
-          Reset
         </Button>
       </InputRightElement>
     </InputGroup>

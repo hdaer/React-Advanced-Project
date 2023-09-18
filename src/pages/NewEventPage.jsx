@@ -10,8 +10,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { Form, redirect, useLoaderData } from "react-router-dom";
-import { MyDatePicker } from "../components/ui/DatePicker";
-import { MyTimePicker } from "../components/ui/TimePicker";
+import { MyDatePicker } from "../components/ui/MyDatePicker";
+import { MyTimePicker } from "../components/ui/MyTimePicker";
 
 export const action = async ({ request }) => {
   const formData = Object.fromEntries(await request.formData());

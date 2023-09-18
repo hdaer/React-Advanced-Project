@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Heading, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Heading, Flex, Grid, GridItem, Button } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
 import { EventCard } from "../components/EventCard";
 import { CategoryFilter } from "../components/ui/CategoryFilter";
+import { NewEventModal } from "../components/NewEventModal";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -34,11 +35,8 @@ export const EventsPage = () => {
   // }, [eventSearchResults]);
 
   const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleReset = () => {
     setSearchInput(() => "");
+    setSearchInput(e.target.value);
   };
 
   // useEffect(() => {
@@ -68,6 +66,8 @@ export const EventsPage = () => {
     searchedEvents.includes(x)
   );
 
+  const handleNewEventClick = () => {};
+
   return (
     <div className="events-page">
       <Grid
@@ -82,7 +82,7 @@ export const EventsPage = () => {
         fontWeight="bold"
       >
         <GridItem pl="2" bg="orange.300" area={"nav"}>
-          Events
+          <NewEventModal />
         </GridItem>
         <GridItem p="2" bg="pink.300" area={"side"}>
           Filter category
@@ -93,13 +93,9 @@ export const EventsPage = () => {
         </GridItem>
         <GridItem pl="2" bg="green.300" area={"main"}>
           <Flex justifyContent={"center"}>
-            <SearchBar
-              handleReset={handleReset}
-              handleChange={handleChange}
-              handleClick={handleClick}
-            />
+            <SearchBar handleChange={handleChange} handleClick={handleClick} />
           </Flex>
-          <Flex flexDir={"row"}>
+          <Flex flexWrap={"wrap"} flexDir={"row"}>
             {searchedEvents.length !== 0 &&
               searchedEvents.map((event) => {
                 return (

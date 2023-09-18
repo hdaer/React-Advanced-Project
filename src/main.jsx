@@ -8,20 +8,22 @@ import {
   loader as eventLoader,
   // action as eventAction,
 } from "./pages/EventPage";
+
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
+
 import {
   NewEventPage,
   loader as newEventLoader,
   action as newEventAction,
 } from "./pages/NewEventPage";
-import { TestPage } from "./pages/TestPage";
-import { DeleteModal } from "./components/DeleteModal";
 
+import { TestPage } from "./pages/TestPage";
 // import {
 //   NewEventForm,
-//   loader as formLoader,
-//   action as addEvent,
-// } from "./utils/NewEventForm";
+//   loader as newEventLoader2,
+//   action as newEventModalAction,
+// } from "./components/NewEventForm";
+// import { DeleteModal } from "./components/DeleteModal";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +39,6 @@ const router = createBrowserRouter([
         path: "/event/:eventId",
         element: <EventPage />,
         loader: eventLoader,
-        // action: eventAction,
       },
       {
         path: "/newevent",
@@ -51,12 +52,12 @@ const router = createBrowserRouter([
         // loader: newEventLoader,
         // action: newEventAction,
       },
-      {
-        path: "/event/:eventId",
-        element: <DeleteModal />,
-        // loader: formLoader,
-        // action: deleteAction,
-      },
+      // {
+      //   path: "/neweventModal",
+      //   element: <NewEventForm />,
+      //   loader: newEventLoader2,
+      //   action: newEventModalAction,
+      // },
     ],
   },
 ]);

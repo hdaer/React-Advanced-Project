@@ -1,27 +1,20 @@
-import { useState } from "react";
 import TimePicker from "react-time-picker";
 
 // https://github.com/wojtekmaj/react-time-picker/blob/main/packages/react-time-picker/README.md
 
-export const MyTimePicker = ({ name }) => {
-  const [value, setValue] = useState(new Date());
-
-  const onChange = (time) => {
-    setValue(() => time);
-  };
-
+export const MyTimePicker = ({ name, timeValue, setTimeValue }) => {
   return (
     <div>
       <TimePicker
-        onChange={onChange}
-        value={value}
+        onChange={(time) => setTimeValue(time)}
+        value={timeValue}
         clearIcon={null}
         maxDetail={"minute"}
         isOpen={true}
         clockIcon={null}
         locale="de-DE"
-        name={name}
         disabled={false}
+        name={name}
       />
     </div>
   );

@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { Form, redirect, useLoaderData, useParams } from "react-router-dom";
 import { useState } from "react";
-import { MyDatePicker } from "./ui/DatePicker";
-import { MyTimePicker } from "./ui/TimePicker";
+import { MyDatePicker } from "./ui/MyDatePicker";
+import { MyTimePicker } from "./ui/MyTimePicker";
 
 export const action = async ({ request }) => {
   const formData = Object.fromEntries(await request.formData());
@@ -92,7 +92,7 @@ export const EditEventForm = () => {
             />
           </GridItem>
 
-          {/* <GridItem>
+          <GridItem>
             <FormLabel>Description</FormLabel>
             <Input
               type="text"
@@ -143,7 +143,7 @@ export const EditEventForm = () => {
                 <option key={user.id}>{user.name}</option>
               ))}
             </Select>
-          </GridItem> */}
+          </GridItem>
         </Grid>
       </FormControl>
       <Button
