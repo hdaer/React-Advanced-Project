@@ -17,7 +17,7 @@ import {
   action as newEventAction,
 } from "./pages/NewEventPage";
 
-import { TestPage } from "./pages/TestPage";
+// import { TestPage } from "./pages/TestPage";
 // import {
 //   NewEventForm,
 //   loader as newEventLoader2,
@@ -27,7 +27,6 @@ import { TestPage } from "./pages/TestPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <Root />,
     children: [
       {
@@ -46,12 +45,12 @@ const router = createBrowserRouter([
         loader: newEventLoader,
         action: newEventAction,
       },
-      {
-        path: "/testpage",
-        element: <TestPage />,
-        // loader: newEventLoader,
-        // action: newEventAction,
-      },
+      // {
+      //   path: "/testpage",
+      //   element: <TestPage />,
+      //   // loader: newEventLoader,
+      //   // action: newEventAction,
+      // },
       // {
       //   path: "/neweventModal",
       //   element: <NewEventForm />,

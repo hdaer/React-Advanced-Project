@@ -13,7 +13,7 @@ export const MyDatePicker = ({ dateValue, setDateValue }) => {
         calendarIcon={null}
         value={dateValue}
         locale="en-DE"
-        format="dd/M/yyyy"
+        format="dd/MM/yyyy"
         name="date"
       />
     </>

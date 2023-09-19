@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
 
-import DatePicker from "react-date-picker";
-import "react-date-picker/dist/DatePicker.css";
-import "react-calendar/dist/Calendar.css";
-import TimePicker from "react-time-picker";
-
 import {
   Button,
   Grid,
@@ -18,7 +13,7 @@ import {
   Checkbox,
   Flex,
 } from "@chakra-ui/react";
-import { redirect, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 import { MyTimePicker } from "./ui/MyTimePicker";
 import { MyDatePicker } from "./ui/MyDatePicker";
@@ -50,52 +45,61 @@ export const NewEventForm = () => {
     createdBy: null,
   });
 
-  const [dateValue, setDateValue] = useState(new Date());
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const todaysDate = new Date();
+  const todaysTime = `${todaysDate.getHours()}:${todaysDate.getMinutes()}`;
 
-  // useEffect(() => {
-  //   console.log("hello");
-  // });Effect(() => {
-  //   console.log("hello");
-  // });
+  const [dateValue, setDateValue] = useState(todaysDate);
+  const [startTime, setStartTime] = useState(todaysTime);
+  const [endTime, setEndTime] = useState(todaysTime);
+
+  const [checked, setChecked] = useState([]);
 
   useEffect(() => {
-    const day = dateValue.getDate();
-    const month = dateValue.getMonth() + 1;
+    const day = (dateValue.getDate() < 10 ? "0" : "") + dateValue.getDate();
+    const month =
+      (dateValue.getMonth() + 1 < 10 ? "0" : "") + (dateValue.getMonth() + 1);
     const year = dateValue.getFullYear();
     const newDate = `${year}-${month}-${day}`;
 
     setNewEventFormState({
       ...newEventFormState,
       startTime: `${newDate}T${startTime}`,
-    });
-    setNewEventFormState({
-      ...newEventFormState,
-      startTime: `${newDate}T${endTime}`,
+      endTime: `${newDate}T${endTime}`,
     });
 
-    console.log(newEventFormState);
+    // console.log(startTime);
+    // console.log(endTime);
+    // console.log(newDate);
   }, [dateValue, startTime, endTime]);
 
-  const handleChange = (e) => {
-    let value = null;
+  const handleChange = (e, index) => {
+    let value = "";
 
     if (e.target.name == "createdBy") {
       value = parseInt(e.target.value, 10);
-    }
+    } else if (e.target.name == "categoryIds") {
+      let prev = checked;
+      let itemIndex = prev.indexOf(index);
+      if (itemIndex !== -1) {
+        prev.splice(itemIndex, 1);
+      } else {
+        prev.push(index);
+      }
 
-    // if (e.target.name == "categoryIds") {
-    //   value = [...[], e.target.value];
-    // }
+      setChecked([...prev]);
+
+      value = checked.map((index) => index + 1).sort();
+    } else {
+      value = e.target.value;
+    }
 
     setNewEventFormState({
       ...newEventFormState,
       [e.target.name]: value,
     });
-    // console.log(newEventFormState);
-    // console.log(newEventFormState.title);
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const newId = await fetch("http://localhost:3000/events", {
@@ -106,12 +110,28 @@ export const NewEventForm = () => {
       .then((res) => res.json())
       .then((json) => json.id);
 
-    // return redirect(`/newevent`);
-    return redirect(`/event/${newId}`);
+    toast({
+      position: "bottom",
+      render: () => (
+        <Box
+          textAlign="center"
+          fontSize="25"
+          fontWeight="bold"
+          color="white"
+          p={3}
+          bg="blue.500"
+          borderRadius="20px"
+        >
+          Event Created
+        </Box>
+      ),
+    });
+
+    navigate(`/event/${newId}`);
   };
 
   return (
-    <FormControl onSubmit={handleSubmit}>
+    <FormControl onSubmit={handleSubmit} isRequired>
       <Grid gap={30}>
         <GridItem>
           <FormLabel>Title</FormLabel>
@@ -137,32 +157,24 @@ export const NewEventForm = () => {
 
         <GridItem>
           <FormLabel>Category</FormLabel>
-
           <Flex
             justifyContent={"left"}
             flexDirection={"row"}
             gap={"0.5rem"}
             margin={"0.2rem"}
           >
-            {categories.map((category) => (
+            {categories.map((category, index) => (
               <Checkbox
                 key={category.id}
                 name="categoryIds"
                 value={category.id}
-                onChange={handleChange}
+                checked={checked.includes(index)}
+                onChange={(e) => handleChange(e, index)}
               >
                 {category.name}
               </Checkbox>
             ))}
           </Flex>
-
-          {/* <Select name="categoryIds" placeholder="select category">
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </Select> */}
         </GridItem>
 
         <GridItem>
@@ -229,27 +241,7 @@ export const NewEventForm = () => {
         </GridItem>
       </Grid>
 
-      <Button
-        type="submit"
-        onClick={() =>
-          toast({
-            position: "bottom",
-            render: () => (
-              <Box
-                textAlign="center"
-                fontSize="25"
-                fontWeight="bold"
-                color="white"
-                p={3}
-                bg="blue.500"
-                borderRadius="20px"
-              >
-                Event Created
-              </Box>
-            ),
-          })
-        }
-      >
+      <Button type="submit" onClick={handleSubmit}>
         Add Event
       </Button>
     </FormControl>

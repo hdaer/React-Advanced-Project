@@ -10,6 +10,7 @@ export const MyTimePicker = ({ name, timeValue, setTimeValue }) => {
         value={timeValue}
         clearIcon={null}
         maxDetail={"minute"}
+        format={"HH:mm"}
         isOpen={true}
         clockIcon={null}
         locale="de-DE"

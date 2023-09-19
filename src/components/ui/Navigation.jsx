@@ -10,7 +10,7 @@ export const Navigation = () => {
           <li>
             <Link to="/">Events</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/event/1">Event</Link>
           </li>
           <li>
@@ -18,7 +18,7 @@ export const Navigation = () => {
           </li>
           <li>
             <Link to="/testpage">Test Page</Link>
-          </li>
+          </li> */}
         </Flex>
       </ul>
     </nav>
