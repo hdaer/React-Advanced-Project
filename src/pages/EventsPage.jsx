@@ -20,6 +20,9 @@ export const loader = async () => {
 
 export const EventsPage = () => {
   const { events, categories } = useLoaderData();
+
+  const [searchedFilteredEvents, setSearchedFilteredEvents] = useState([]);
+
   const [searchInput, setSearchInput] = useState("");
   const [searchedEvents, setSearchedEvents] = useState([]);
 
@@ -30,43 +33,25 @@ export const EventsPage = () => {
     setSearchedEvents(searchedItems);
   };
 
-  // useEffect(() => {
-  //   console.log(eventSearchResults);
-  // }, [eventSearchResults]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
-  const handleChange = (e) => {
-    setSearchInput(() => "");
-    setSearchInput(e.target.value);
-  };
+  useEffect(() => {
+    if (filteredEvents.length == 0 && searchedEvents.length == 0) {
+      setSearchedFilteredEvents(events);
+    } else if (filteredEvents.length == 0 && searchedEvents.length != 0) {
+      setSearchedFilteredEvents(searchedEvents);
+    } else if (filteredEvents.length != 0 && searchedEvents.length == 0) {
+      setSearchedFilteredEvents(filteredEvents);
+    } else if (filteredEvents.length != 0 && searchedEvents.length != 0) {
+      let intersection = searchedEvents.filter((x) =>
+        filteredEvents.includes(x)
+      );
 
-  // useEffect(() => {
-  //   console.log(searchInput);
-  // }, [searchInput]);
+      setSearchedFilteredEvents(intersection);
+    }
 
-  const [categoryFilter, setCategoryFilter] = useState([]);
-  // const [filteredEvents, setFilteredEvents] = useState([]);
-
-  // useEffect(() => {
-  //   setFilteredEvents(() => {
-  //     events.filter((event) => {
-  //       return event.categoryIds.some((categoryId) => {
-  //         return categoryFilter.includes(categoryId);
-  //       });
-  //     });
-  //   });
-  // }, [categoryFilter]);
-
-  const filteredEvents = events.filter((event) => {
-    return event.categoryIds.some((categoryId) => {
-      return categoryFilter.includes(categoryId);
-    });
-  });
-
-  const filteredAndSearchedEvents = filteredEvents.filter((x) =>
-    searchedEvents.includes(x)
-  );
-
-  const handleNewEventClick = () => {};
+    console.log(searchedEvents);
+  }, [searchedEvents, filteredEvents]);
 
   return (
     <div className="events-page">
@@ -87,59 +72,28 @@ export const EventsPage = () => {
         <GridItem p="2" bg="pink.300" area={"side"}>
           Filter category
           <CategoryFilter
+            events={events}
             categories={categories}
-            setCategoryFilter={setCategoryFilter}
+            setFilteredEvents={setFilteredEvents}
           />
         </GridItem>
         <GridItem pl="2" bg="green.300" area={"main"}>
           <Flex justifyContent={"center"}>
-            <SearchBar handleChange={handleChange} handleClick={handleClick} />
+            <SearchBar
+              setSearchInput={setSearchInput}
+              handleClick={handleClick}
+            />
           </Flex>
           <Flex flexWrap={"wrap"} flexDir={"row"}>
-            {searchedEvents.length !== 0 &&
-              searchedEvents.map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    event={event}
-                    categories={categories}
-                  />
-                );
-              })}
-
-            {filteredEvents.length !== 0 &&
-              filteredEvents.map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    event={event}
-                    categories={categories}
-                  />
-                );
-              })}
-
-            {searchedEvents.length === 0 &&
-              filteredEvents.length === 0 &&
-              events.map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    event={event}
-                    categories={categories}
-                  />
-                );
-              })}
-
-            {filteredAndSearchedEvents.length === 0 &&
-              filteredAndSearchedEvents.map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    event={event}
-                    categories={categories}
-                  />
-                );
-              })}
+            {searchedFilteredEvents.map((event) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  categories={categories}
+                />
+              );
+            })}
           </Flex>
         </GridItem>
         <GridItem pl="2" bg="blue.300" area={"footer"}>

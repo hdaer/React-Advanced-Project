@@ -66,10 +66,6 @@ export const NewEventForm = () => {
       startTime: `${newDate}T${startTime}`,
       endTime: `${newDate}T${endTime}`,
     });
-
-    // console.log(startTime);
-    // console.log(endTime);
-    // console.log(newDate);
   }, [dateValue, startTime, endTime]);
 
   const handleChange = (e, index) => {
@@ -149,7 +145,6 @@ export const NewEventForm = () => {
           <Input
             type="text"
             name="description"
-            // value={newEventFormState.description}
             placeholder={"description of event"}
             onChange={handleChange}
           />

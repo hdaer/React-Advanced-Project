@@ -3,7 +3,6 @@ import { Heading } from "@chakra-ui/react";
 
 import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
-import { EventCard } from "../components/EventCard";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -29,7 +28,7 @@ export const EventPage = () => {
     <>
       <Heading>Event</Heading>
       <div className="event">
-        {/* <p>{event.title}</p>
+        <p>{event.title}</p>
         <p>{event.description}</p>
         <img src={event.image} alt={event.title} width="500" height="600" />
         <p>
@@ -55,8 +54,8 @@ export const EventPage = () => {
               <span key={user.id}>{user.name}</span>
             ) : null;
           })}
-        </p> */}
-        <EventCard key={event.id} event={event} categories={categories} />
+        </p>
+
         <EditModal />
         <DeleteModal eventId={params.eventId} />
       </div>

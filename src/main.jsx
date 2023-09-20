@@ -11,11 +11,11 @@ import {
 
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
 
-import {
-  NewEventPage,
-  loader as newEventLoader,
-  action as newEventAction,
-} from "./pages/NewEventPage";
+// import {
+//   NewEventPage,
+//   loader as newEventLoader,
+//   action as newEventAction,
+// } from "./pages/NewEventPage";
 
 // import { TestPage } from "./pages/TestPage";
 // import {
@@ -39,12 +39,12 @@ const router = createBrowserRouter([
         element: <EventPage />,
         loader: eventLoader,
       },
-      {
-        path: "/newevent",
-        element: <NewEventPage />,
-        loader: newEventLoader,
-        action: newEventAction,
-      },
+      // {
+      //   path: "/newevent",
+      //   element: <NewEventPage />,
+      //   loader: newEventLoader,
+      //   action: newEventAction,
+      // },
       // {
       //   path: "/testpage",
       //   element: <TestPage />,
