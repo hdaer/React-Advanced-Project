@@ -49,8 +49,6 @@ export const EventsPage = () => {
 
       setSearchedFilteredEvents(intersection);
     }
-
-    console.log(searchedEvents);
   }, [searchedEvents, filteredEvents]);
 
   return (

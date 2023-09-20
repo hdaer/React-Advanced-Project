@@ -6,9 +6,9 @@ export const Navigation = () => {
   return (
     <nav>
       <ul>
-        <Flex flexDirection={"row"} gap={"3em"}>
+        <Flex justifyContent={"center"} flexDirection={"row"} gap={"3em"}>
           <li>
-            <Link to="/">Events</Link>
+            <Link to="/">HOME</Link>
           </li>
           {/* <li>
             <Link to="/event/1">Event</Link>

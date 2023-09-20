@@ -8,7 +8,7 @@ import {
   useCheckbox,
 } from "@chakra-ui/react";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
   function CustomCheckbox(props) {
@@ -52,14 +52,12 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
 
   const { value, getCheckboxProps } = useCheckboxGroup();
 
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  // const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
-    setFilteredCategories([]);
     const filteredCategories = value.map(Number).sort(function (a, b) {
       return a - b;
     });
-    setFilteredCategories(filteredCategories);
 
     const filteredEventsByCategory = events.filter((event) => {
       return event.categoryIds.some((categoryId) => {
@@ -67,7 +65,6 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
       });
     });
     setFilteredEvents(filteredEventsByCategory);
-    console.log(filteredEventsByCategory);
   }, [value]);
 
   return (

@@ -55,7 +55,7 @@
     {
       "createdBy": 1,
       "title": "myEvent",
-      "description": "jippy",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat tortor mauris, vitae facilisis ligula euismod in. Proin sit amet consequat ante. Nullam commodo, quam in volutpat ultrices, neque lorem congue sem, aliquet mollis ante sem nec diam. Curabitur nec lacus euismod, hendrerit sapien sed, sollicitudin ex. Mauris sapien nisl.",
       "image": "https://gaming-cdn.com/images/products/2198/orig/hollow-knight-pc-mac-spel-steam-cover.jpg?v=1649252899",
       "categoryIds": [
         3
@@ -104,19 +104,6 @@
       "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/248820/capsule_616x353.jpg?t=1577387901",
       "createdBy": 1,
       "id": 8
-    },
-    {
-      "title": "gameFest",
-      "description": "play all indie games here!",
-      "categoryIds": [
-        2
-      ],
-      "location": "Texel",
-      "startTime": "2023-9-30T17:23",
-      "endTime": "",
-      "image": "https://static01.nyt.com/images/2012/05/17/arts/FEZ-JP-1/FEZ-JP-1-jumbo.jpg?quality=75&auto=webp&disable=upscale",
-      "createdBy": 2,
-      "id": 9
     },
     {
       "title": "Another eventstest",

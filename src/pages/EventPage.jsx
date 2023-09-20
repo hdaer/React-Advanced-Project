@@ -1,5 +1,13 @@
 import { useParams, useLoaderData } from "react-router-dom";
-import { Heading } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Container,
+  Box,
+  Text,
+  Image,
+  Grid,
+} from "@chakra-ui/react";
 
 import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
@@ -25,40 +33,92 @@ export const EventPage = () => {
   })[0];
 
   return (
-    <>
-      <Heading>Event</Heading>
-      <div className="event">
-        <p>{event.title}</p>
-        <p>{event.description}</p>
-        <img src={event.image} alt={event.title} width="500" height="600" />
-        <p>
-          start: {event.startTime.substring(0, 10)},{" "}
-          {event.startTime.substring(11, 16)}
-        </p>
-        <p>
-          end: {event.endTime.substring(0, 10)},{" "}
-          {event.endTime.substring(11, 16)}
-        </p>
-        <p>
-          Category:{" "}
-          {categories.map((category) => {
-            return event.categoryIds.includes(category.id) ? (
-              <span key={category.id}>{category.name} </span>
-            ) : null;
-          })}
-        </p>
-        <p>
-          created by:{" "}
-          {users.map((user) => {
-            return event.createdBy == user.id ? (
-              <span key={user.id}>{user.name}</span>
-            ) : null;
-          })}
-        </p>
+    <Container
+      marginTop={"2rem"}
+      maxW={"75vw"}
+      borderRadius={"20px"}
+      boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
+    >
+      <Flex
+        flexDir={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        paddingBottom={"1rem"}
+      >
+        <Heading pb={"0.5rem"}>{event.title}</Heading>
 
-        <EditModal />
-        <DeleteModal eventId={params.eventId} />
-      </div>
-    </>
+        <Image
+          src={event.image}
+          alt={event.title}
+          boxSize={"50%"}
+          objectFit={"cover"}
+          mb={"1rem"}
+        />
+
+        <Box>
+          <Flex gap={"3"}>
+            {categories.map((category) => {
+              return event.categoryIds.includes(category.id) ? (
+                <Text
+                  fontStyle={"italic"}
+                  fontWeight={"bold"}
+                  fontSize={"1.5em"}
+                  color={"gray.400"}
+                  key={category.id}
+                >
+                  {category.name}{" "}
+                </Text>
+              ) : null;
+            })}
+          </Flex>
+        </Box>
+
+        <Box mb={"1"}>{event.description}</Box>
+
+        <Box backgroundColor={"lightskyblue"} borderRadius={"10px"} p={"2"}>
+          <Grid
+            templateRows="repeat(3, 1fr)"
+            templateColumns="repeat(2, 1fr)"
+            gap={1}
+          >
+            <Text fontWeight={"bold"}>date:</Text>
+            <Text>{event.endTime.substring(0, 10)}</Text>
+
+            <Text fontWeight={"bold"}>start:</Text>
+            <Text>{event.startTime.substring(11, 16)}</Text>
+
+            <Text fontWeight={"bold"}>end:</Text>
+            <Text>{event.endTime.substring(11, 16)}</Text>
+          </Grid>
+        </Box>
+
+        <Flex
+          w={"50%"}
+          gap={"2rem"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          // border={"1px solid red"}
+          mt={"0.5rem"}
+        >
+          <EditModal />
+          <Flex>
+            {users.map((user) => {
+              return event.createdBy == user.id ? (
+                <Flex key={user.id} gap={"1"} alignItems={"center"}>
+                  <Text fontStyle={"italic"}>Created by: {user.name}</Text>
+                  <Image
+                    src={user.image}
+                    alt={user.name}
+                    boxSize={"40px"}
+                    borderRadius="full"
+                  />
+                </Flex>
+              ) : null;
+            })}
+          </Flex>
+          <DeleteModal eventId={params.eventId} />
+        </Flex>
+      </Flex>
+    </Container>
   );
 };
