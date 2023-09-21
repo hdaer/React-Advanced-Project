@@ -4,7 +4,6 @@ import { Heading, Flex, Grid, GridItem, Button } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
 import { EventCard } from "../components/EventCard";
 import { CategoryFilter } from "../components/ui/CategoryFilter";
-import { NewEventModal } from "../components/NewEventModal";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -54,35 +53,30 @@ export const EventsPage = () => {
   return (
     <div className="events-page">
       <Grid
-        templateAreas={`"nav nav"
+        templateAreas={`
                   "side main"
                   "side footer"`}
-        gridTemplateRows={"50px 1fr 30px"}
         gridTemplateColumns={"150px 1fr"}
-        h="200px"
-        gap="1"
-        color="blackAlpha.700"
+        gridTemplateRows={"1fr 30px"}
+        color={"#26577C"}
         fontWeight="bold"
       >
-        <GridItem pl="2" bg="orange.300" area={"nav"}>
-          <NewEventModal />
-        </GridItem>
-        <GridItem p="2" bg="pink.300" area={"side"}>
-          Filter category
+        <GridItem p="2" bg="#FFDBAA" area={"side"}>
+          Category Filter
           <CategoryFilter
             events={events}
             categories={categories}
             setFilteredEvents={setFilteredEvents}
           />
         </GridItem>
-        <GridItem pl="2" bg="green.300" area={"main"}>
+        <GridItem pl="2" bg="#EBE4D1" area={"main"}>
           <Flex justifyContent={"center"}>
             <SearchBar
               setSearchInput={setSearchInput}
               handleClick={handleClick}
             />
           </Flex>
-          <Flex flexWrap={"wrap"} flexDir={"row"}>
+          <Flex flexWrap={"wrap"} border={"1px solid red"}>
             {searchedFilteredEvents.map((event) => {
               return (
                 <EventCard

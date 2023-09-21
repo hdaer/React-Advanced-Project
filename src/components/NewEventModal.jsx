@@ -8,28 +8,82 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  useToast,
+  Box,
 } from "@chakra-ui/react";
 
-import { NewEventForm } from "./NewEventForm";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { EventForm } from "./EventForm";
 
 export const NewEventModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const [newEventForm, setNewEventForm] = useState({
+    title: "",
+    description: "",
+    categoryIds: [],
+    location: "",
+    startTime: "",
+    endTime: "",
+    image: "",
+    createdBy: null,
+  });
+
+  const handleSubmit = async () => {
+    const newId = await fetch("http://localhost:3000/events", {
+      method: "POST",
+      body: JSON.stringify(newEventForm),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((json) => json.id);
+
+    toast({
+      position: "bottom",
+      render: () => (
+        <Box
+          textAlign="center"
+          fontSize="25"
+          fontWeight="bold"
+          color="white"
+          p={3}
+          bg="#26577C"
+          borderRadius="20px"
+        >
+          Event Created
+        </Box>
+      ),
+    });
+
+    navigate(`/event/${newId}`);
+  };
 
   return (
     <>
-      <Button onClick={onOpen}>New Event</Button>
+      <Button color={"#26577C"} onClick={onOpen} margin={".5rem 0 .5rem"}>
+        New Event
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add Event</ModalHeader>
+          <ModalHeader>Add New Event</ModalHeader>
           <ModalCloseButton />
 
           <ModalBody>
-            <NewEventForm />
+            <EventForm
+              formState={newEventForm}
+              setFormState={setNewEventForm}
+            />
           </ModalBody>
 
           <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+              Add Event
+            </Button>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>

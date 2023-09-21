@@ -18,7 +18,7 @@ export const EventCard = ({ event, categories }) => {
   return (
     <Flex flexDirection={"row"} gap={"3em"}>
       <Link to={`event/${event.id}`}>
-        <Card margin={"2"} height={"400px"} width={"300px"}>
+        <Card margin={"2"} height={"400px"} width={"300px"} bg={"#E2E8F0"}>
           <CardBody>
             <Image
               src={event.image}

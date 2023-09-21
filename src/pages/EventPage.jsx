@@ -9,6 +9,8 @@ import {
   Grid,
 } from "@chakra-ui/react";
 
+// import { EditModal } from "../components/EditModal";
+
 import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
 
@@ -49,15 +51,15 @@ export const EventPage = () => {
         <Heading color={"#26577C"} pb={"0.5rem"}>
           {event.title}
         </Heading>
-
-        <Image
-          src={event.image}
-          alt={event.title}
-          boxSize={"50%"}
-          objectFit={"cover"}
-          mb={"1rem"}
-          borderRadius={"20px"}
-        />
+        <Flex boxSize={"50%"} justifyContent={"center"}>
+          <Image
+            src={event.image}
+            alt={event.title}
+            objectFit={"cover"}
+            mb={"1rem"}
+            borderRadius={"20px"}
+          />
+        </Flex>
 
         <Box>
           <Flex gap={"3"}>

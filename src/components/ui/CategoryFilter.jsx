@@ -22,9 +22,9 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
         alignItems="center"
         gridColumnGap={2}
         maxW="40"
-        bg="green.50"
+        bg="#E2E8F0"
         border="1px solid"
-        borderColor="green.500"
+        borderColor="#26577C"
         rounded="lg"
         px={3}
         py={1}
@@ -36,14 +36,15 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
           alignItems="center"
           justifyContent="center"
           border="2px solid"
-          borderColor="green.500"
+          borderColor="#26577C"
           w={4}
           h={4}
           {...getCheckboxProps()}
         >
           {state.isChecked && <Box w={2} h={2} bg="green.500" />}
         </Flex>
-        <Text color="gray.700" {...getLabelProps()}>
+
+        <Text color="#26577C" {...getLabelProps()}>
           {props.name}
         </Text>
       </chakra.label>

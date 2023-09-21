@@ -1,34 +1,19 @@
 import { useState, useEffect } from "react";
 
 import {
-  Button,
   Grid,
   GridItem,
   FormControl,
   FormLabel,
   Input,
   Select,
-  useToast,
-  Box,
   Checkbox,
   Flex,
 } from "@chakra-ui/react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+// import { useLoaderData, useNavigate } from "react-router-dom";
 
 import { MyTimePicker } from "./ui/MyTimePicker";
 import { MyDatePicker } from "./ui/MyDatePicker";
-
-// export const loader = async () => {
-//   const events = await fetch("http://localhost:3000/events");
-//   const categories = await fetch("http://localhost:3000/categories");
-//   const users = await fetch("http://localhost:3000/users");
-
-//   return {
-//     users: await users.json(),
-//     events: await events.json(),
-//     categories: await categories.json(),
-//   };
-// };
 
 const dataFetcher = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -44,30 +29,8 @@ const dataFetcher = async () => {
 
 const { users, events, categories } = await dataFetcher();
 
-// const dataFetcher = async () => {
-//   const fetchedUsers = await fetch("http://localhost:3000/users");
-//   const users = await fetchedUsers.json();
-//   return users;
-// };
-
-// const users = await getUsers();
-
-export const NewEventForm = () => {
-  // const { categories } = useLoaderData();
-  const toast = useToast();
-
-  console.log(users);
-
-  const [newEventFormState, setNewEventFormState] = useState({
-    title: "",
-    description: "",
-    categoryIds: [],
-    location: "",
-    startTime: "",
-    endTime: "",
-    image: "",
-    createdBy: null,
-  });
+export const EventForm = ({ formState, setFormState }) => {
+  // const { users, events, categories } = useLoaderData();
 
   const todaysDate = new Date();
   const todaysTime = `${todaysDate.getHours()}:${todaysDate.getMinutes()}`;
@@ -75,7 +38,6 @@ export const NewEventForm = () => {
   const [dateValue, setDateValue] = useState(todaysDate);
   const [startTime, setStartTime] = useState(todaysTime);
   const [endTime, setEndTime] = useState(todaysTime);
-
   const [checked, setChecked] = useState([]);
 
   useEffect(() => {
@@ -85,8 +47,8 @@ export const NewEventForm = () => {
     const year = dateValue.getFullYear();
     const newDate = `${year}-${month}-${day}`;
 
-    setNewEventFormState({
-      ...newEventFormState,
+    setFormState({
+      ...formState,
       startTime: `${newDate}T${startTime}`,
       endTime: `${newDate}T${endTime}`,
     });
@@ -113,52 +75,21 @@ export const NewEventForm = () => {
       value = e.target.value;
     }
 
-    setNewEventFormState({
-      ...newEventFormState,
+    setFormState({
+      ...formState,
       [e.target.name]: value,
     });
   };
 
-  const navigate = useNavigate();
-
-  const handleSubmit = async () => {
-    const newId = await fetch("http://localhost:3000/events", {
-      method: "POST",
-      body: JSON.stringify(newEventFormState),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((json) => json.id);
-
-    toast({
-      position: "bottom",
-      render: () => (
-        <Box
-          textAlign="center"
-          fontSize="25"
-          fontWeight="bold"
-          color="white"
-          p={3}
-          bg="blue.500"
-          borderRadius="20px"
-        >
-          Event Created
-        </Box>
-      ),
-    });
-
-    navigate(`/event/${newId}`);
-  };
-
   return (
-    <FormControl onSubmit={handleSubmit} isRequired>
+    <FormControl isRequired>
       <Grid gap={30}>
         <GridItem>
           <FormLabel>Title</FormLabel>
           <Input
             type="text"
             name="title"
-            value={newEventFormState.title}
+            value={formState.title}
             placeholder={"title of event"}
             onChange={handleChange}
           />
@@ -202,7 +133,7 @@ export const NewEventForm = () => {
             type="text"
             name="location"
             placeholder={"location of event"}
-            value={newEventFormState.location}
+            value={formState.location}
             onChange={handleChange}
           />
         </GridItem>
@@ -240,7 +171,7 @@ export const NewEventForm = () => {
             type="text"
             name="image"
             placeholder={"paste image URL here..."}
-            value={newEventFormState.image}
+            value={formState.image}
             onChange={handleChange}
           />
         </GridItem>
@@ -259,10 +190,6 @@ export const NewEventForm = () => {
           </Select>
         </GridItem>
       </Grid>
-
-      <Button type="submit" onClick={handleSubmit}>
-        Add Event
-      </Button>
     </FormControl>
   );
 };

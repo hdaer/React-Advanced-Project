@@ -1,41 +1,28 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, UnorderedList, ListItem } from "@chakra-ui/react";
 import { NewEventModal } from "../NewEventModal";
-import { DeleteModal } from "../DeleteModal";
-import { EditModal } from "../EditModal";
 
 export const Navigation = () => {
   const params = useParams();
-  console.log(params);
 
   return (
     <nav>
-      <ul style={{ listStyleType: "none" }}>
-        <Flex justifyContent={"center"} flexDirection={"row"} gap={"3em"}>
-          <li>
-            <Button>
-              <Link to="/">HOME</Link>
-            </Button>
-          </li>
-
+      <UnorderedList ml={"0"} style={{ listStyleType: "none" }}>
+        <Flex justifyContent={"center"} backgroundColor={"#B4B4B3"}>
           {Object.keys(params).length != 0 ? (
-            <>
-              {" "}
-              <li>
-                <EditModal eventId={params.eventId} />
-              </li>
-              <li>
-                <DeleteModal eventId={params.eventId} />
-              </li>
-            </>
+            <ListItem>
+              <Button color={"#26577C"} margin={".5rem 0 .5rem"}>
+                <Link to="/">Events</Link>
+              </Button>
+            </ListItem>
           ) : (
-            <li>
+            <ListItem>
               <NewEventModal />
-            </li>
+            </ListItem>
           )}
         </Flex>
-      </ul>
+      </UnorderedList>
     </nav>
   );
 };
