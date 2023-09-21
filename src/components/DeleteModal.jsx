@@ -39,7 +39,9 @@ export const DeleteModal = ({ eventId }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>Delete Event</Button>
+      <Button onClick={onOpen} backgroundColor={"#E55604"} color={"white"}>
+        Delete Event
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -49,14 +51,18 @@ export const DeleteModal = ({ eventId }) => {
           <Flex flexDirection={"row"} rowGap={"10px"}>
             <ModalBody>
               <span>Do you really want to delete this event?</span>
-              <Button variant="solid" onClick={() => handleClick()}>
+              <Button
+                variant="solid"
+                onClick={() => handleClick()}
+                backgroundColor={"#D83F31"}
+              >
                 Delete
               </Button>
             </ModalBody>
           </Flex>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button mr={3} onClick={onClose} backgroundColor={"#26577C"}>
               Close
             </Button>
           </ModalFooter>

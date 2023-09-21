@@ -79,19 +79,6 @@
       "id": 6
     },
     {
-      "createdBy": 2,
-      "title": "testEvent3",
-      "description": "another one",
-      "image": "https://cdn.kobo.com/book-images/59097ff6-5c02-4a41-a45c-c2340db9495c/1200/1200/False/zen-made-easy.jpg",
-      "categoryIds": [
-        3
-      ],
-      "location": "Paris",
-      "startTime": "2024-10-16T15:07",
-      "endTime": "2024-10-16T16:07",
-      "id": 7
-    },
-    {
       "title": "testEffie4",
       "description": "write your poems here",
       "categoryIds": [

@@ -18,7 +18,19 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { MyTimePicker } from "./ui/MyTimePicker";
 import { MyDatePicker } from "./ui/MyDatePicker";
 
-export const loader = async () => {
+// export const loader = async () => {
+//   const events = await fetch("http://localhost:3000/events");
+//   const categories = await fetch("http://localhost:3000/categories");
+//   const users = await fetch("http://localhost:3000/users");
+
+//   return {
+//     users: await users.json(),
+//     events: await events.json(),
+//     categories: await categories.json(),
+//   };
+// };
+
+const dataFetcher = async () => {
   const events = await fetch("http://localhost:3000/events");
   const categories = await fetch("http://localhost:3000/categories");
   const users = await fetch("http://localhost:3000/users");
@@ -30,9 +42,21 @@ export const loader = async () => {
   };
 };
 
+const { users, events, categories } = await dataFetcher();
+
+// const dataFetcher = async () => {
+//   const fetchedUsers = await fetch("http://localhost:3000/users");
+//   const users = await fetchedUsers.json();
+//   return users;
+// };
+
+// const users = await getUsers();
+
 export const NewEventForm = () => {
-  const { users, categories } = useLoaderData();
+  // const { categories } = useLoaderData();
   const toast = useToast();
+
+  console.log(users);
 
   const [newEventFormState, setNewEventFormState] = useState({
     title: "",

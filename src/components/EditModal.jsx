@@ -17,7 +17,9 @@ export const EditModal = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Edit Event</Button>
+      <Button onClick={onOpen} backgroundColor={"#26577C"} color={"white"}>
+        Edit Event
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

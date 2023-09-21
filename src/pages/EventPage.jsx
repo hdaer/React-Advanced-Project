@@ -38,6 +38,7 @@ export const EventPage = () => {
       maxW={"75vw"}
       borderRadius={"20px"}
       boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
+      backgroundColor={"#EBE4D1"}
     >
       <Flex
         flexDir={"column"}
@@ -45,7 +46,9 @@ export const EventPage = () => {
         alignItems={"center"}
         paddingBottom={"1rem"}
       >
-        <Heading pb={"0.5rem"}>{event.title}</Heading>
+        <Heading color={"#26577C"} pb={"0.5rem"}>
+          {event.title}
+        </Heading>
 
         <Image
           src={event.image}
@@ -53,6 +56,7 @@ export const EventPage = () => {
           boxSize={"50%"}
           objectFit={"cover"}
           mb={"1rem"}
+          borderRadius={"20px"}
         />
 
         <Box>
@@ -63,7 +67,7 @@ export const EventPage = () => {
                   fontStyle={"italic"}
                   fontWeight={"bold"}
                   fontSize={"1.5em"}
-                  color={"gray.400"}
+                  color={"#26577C"}
                   key={category.id}
                 >
                   {category.name}{" "}
@@ -75,7 +79,7 @@ export const EventPage = () => {
 
         <Box mb={"1"}>{event.description}</Box>
 
-        <Box backgroundColor={"lightskyblue"} borderRadius={"10px"} p={"2"}>
+        <Box backgroundColor={"#B4B4B3"} borderRadius={"10px"} p={"2"}>
           <Grid
             templateRows="repeat(3, 1fr)"
             templateColumns="repeat(2, 1fr)"
