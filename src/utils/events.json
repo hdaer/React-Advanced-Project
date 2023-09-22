@@ -105,32 +105,6 @@
       "image": "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/08/06/d4924c36/braid.jpg",
       "createdBy": 1,
       "id": 10
-    },
-    {
-      "title": "dsfasdfasdfsdf",
-      "description": "sdfasdfasdfasdfasfd",
-      "categoryIds": [
-        2
-      ],
-      "location": "fgsdfgdfg",
-      "startTime": "2023-09-28T09:49",
-      "endTime": "2023-09-28T12:56",
-      "image": "hjkfhjkfkhjkg",
-      "createdBy": 1,
-      "id": 11
-    },
-    {
-      "title": "99999",
-      "description": "438734579345",
-      "categoryIds": [
-        3
-      ],
-      "location": "milan",
-      "startTime": "2024-09-20T16:08",
-      "endTime": "2024-09-20T23:08",
-      "image": "sadfasdf",
-      "createdBy": 1,
-      "id": 12
     }
   ],
   "categories": [

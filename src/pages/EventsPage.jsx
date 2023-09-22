@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Heading, Flex, Grid, GridItem, Button } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
 import { EventCard } from "../components/EventCard";
 import { CategoryFilter } from "../components/ui/CategoryFilter";
@@ -55,28 +55,32 @@ export const EventsPage = () => {
       <Grid
         templateAreas={`
                   "side main"
-                  "side footer"`}
+                 `}
         gridTemplateColumns={"150px 1fr"}
-        gridTemplateRows={"1fr 30px"}
+        // gridTemplateRows={"1fr auto"}
         color={"#26577C"}
         fontWeight="bold"
       >
         <GridItem p="2" bg="#FFDBAA" area={"side"}>
-          Category Filter
           <CategoryFilter
             events={events}
             categories={categories}
             setFilteredEvents={setFilteredEvents}
           />
         </GridItem>
-        <GridItem pl="2" bg="#EBE4D1" area={"main"}>
+        <GridItem bg="#EBE4D1" area={"main"}>
           <Flex justifyContent={"center"}>
             <SearchBar
               setSearchInput={setSearchInput}
               handleClick={handleClick}
             />
           </Flex>
-          <Flex flexWrap={"wrap"} border={"1px solid red"}>
+          <Flex
+            m={"0.5rem 1rem"}
+            justifyContent={"flex-start"}
+            flexWrap={"wrap"}
+            border="1px solid red"
+          >
             {searchedFilteredEvents.map((event) => {
               return (
                 <EventCard
@@ -88,9 +92,9 @@ export const EventsPage = () => {
             })}
           </Flex>
         </GridItem>
-        <GridItem pl="2" bg="blue.300" area={"footer"}>
+        {/* <GridItem pl="2" bg="#B4B4B3" area={"footer"}>
           Footer
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </div>
   );

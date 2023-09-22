@@ -69,13 +69,15 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
   }, [value]);
 
   return (
-    <CheckboxGroup colorScheme="blue">
-      <Flex
-        justifyContent={"center"}
-        flexDirection={"column"}
-        gap={"0.5rem"}
-        margin={"0.2rem"}
-      >
+    <Flex
+      justifyContent={"center"}
+      flexDirection={"column"}
+      gap={"0.5rem"}
+      margin={"0.2rem"}
+      pt={"0.5rem"}
+    >
+      <Text>Category Filter</Text>
+      <CheckboxGroup>
         {categories.map((category) => {
           return (
             <CustomCheckbox
@@ -84,7 +86,7 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
             />
           );
         })}
-      </Flex>
-    </CheckboxGroup>
+      </CheckboxGroup>
+    </Flex>
   );
 };

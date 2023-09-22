@@ -37,6 +37,7 @@ export const EventPage = () => {
   return (
     <Container
       marginTop={"2rem"}
+      marginBottom={"2rem"}
       maxW={"75vw"}
       borderRadius={"20px"}
       boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
@@ -51,11 +52,13 @@ export const EventPage = () => {
         <Heading color={"#26577C"} pb={"0.5rem"}>
           {event.title}
         </Heading>
-        <Flex boxSize={"50%"} justifyContent={"center"}>
+        <Flex justifyContent={"center"}>
           <Image
-            src={event.image}
-            alt={event.title}
+            h={"300px"}
             objectFit={"cover"}
+            src={event.image}
+            fallbackSrc="https://via.placeholder.com/300"
+            alt={event.title}
             mb={"1rem"}
             borderRadius={"20px"}
           />

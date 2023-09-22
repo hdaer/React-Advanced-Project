@@ -10,6 +10,8 @@ import {
   Button,
   useToast,
   Box,
+  Flex,
+  Grid,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
@@ -62,9 +64,14 @@ export const NewEventModal = () => {
   };
 
   return (
-    <>
-      <Button color={"#26577C"} onClick={onOpen} margin={".5rem 0 .5rem"}>
-        New Event
+    <Flex height="100%" justifyContent={"flex-end"} alignItems="center">
+      <Button
+        onClick={onOpen}
+        color={"#26577C"}
+        justifyContent="flex-end"
+        margin={"0.5rem 1rem"}
+      >
+        Add Event
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -90,6 +97,6 @@ export const NewEventModal = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Flex>
   );
 };
