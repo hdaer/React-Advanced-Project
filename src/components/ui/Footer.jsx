@@ -3,7 +3,7 @@ import { Flex, Link, Image } from "@chakra-ui/react";
 export const Footer = () => {
   return (
     <Flex
-      h={"30px"}
+      h={"5vh"}
       w="100%"
       p="2"
       bg="#B4B4B3"

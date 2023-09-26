@@ -34,6 +34,18 @@ export const EventPage = () => {
     return event.id == params.eventId;
   })[0];
 
+  const date = event.endTime.substring(0, 10);
+  const reverseString = (str) => {
+    const splitString = str.split("-");
+    const reverseArray = splitString.reverse();
+    const joinArray = reverseArray.join("-");
+    return joinArray;
+  };
+  const reverseDate = reverseString(date);
+
+  const start = event.startTime.substring(11, 16);
+  const end = event.endTime.substring(11, 16);
+
   return (
     <Container
       marginTop={"2rem"}
@@ -54,7 +66,7 @@ export const EventPage = () => {
         </Heading>
         <Flex justifyContent={"center"}>
           <Image
-            h={"300px"}
+            h={"35vh"}
             objectFit={"cover"}
             src={event.image}
             fallbackSrc="https://via.placeholder.com/300"
@@ -91,25 +103,24 @@ export const EventPage = () => {
             gap={1}
           >
             <Text fontWeight={"bold"}>date:</Text>
-            <Text>{event.endTime.substring(0, 10)}</Text>
+            <Text>{reverseDate}</Text>
 
             <Text fontWeight={"bold"}>start:</Text>
-            <Text>{event.startTime.substring(11, 16)}</Text>
+            <Text>{start}</Text>
 
             <Text fontWeight={"bold"}>end:</Text>
-            <Text>{event.endTime.substring(11, 16)}</Text>
+            <Text>{end}</Text>
           </Grid>
         </Box>
 
         <Flex
-          w={"50%"}
+          w={"70%"}
           gap={"2rem"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          // border={"1px solid red"}
           mt={"0.5rem"}
         >
-          <EditModal />
+          <EditModal event={event} />
           <Flex>
             {users.map((user) => {
               return event.createdBy == user.id ? (

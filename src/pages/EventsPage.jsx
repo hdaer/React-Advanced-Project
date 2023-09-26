@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { SearchBar } from "../components/ui/SearchBar";
 import { EventCard } from "../components/EventCard";
 import { CategoryFilter } from "../components/ui/CategoryFilter";
@@ -51,51 +51,29 @@ export const EventsPage = () => {
   }, [searchedEvents, filteredEvents]);
 
   return (
-    <div className="events-page">
-      <Grid
-        templateAreas={`
-                  "side main"
-                 `}
-        gridTemplateColumns={"150px 1fr"}
-        // gridTemplateRows={"1fr auto"}
-        color={"#26577C"}
-        fontWeight="bold"
-      >
-        <GridItem p="2" bg="#FFDBAA" area={"side"}>
-          <CategoryFilter
-            events={events}
-            categories={categories}
-            setFilteredEvents={setFilteredEvents}
+    <Flex h={"100%"} color={"#26577C"} fontWeight="bold">
+      <Box width={"150px"} p="2" bg="#FFDBAA">
+        <CategoryFilter
+          events={events}
+          categories={categories}
+          setFilteredEvents={setFilteredEvents}
+        />
+      </Box>
+      <Box w={"100%"} bg="#EBE4D1">
+        <Flex justifyContent={"center"}>
+          <SearchBar
+            setSearchInput={setSearchInput}
+            handleClick={handleClick}
           />
-        </GridItem>
-        <GridItem bg="#EBE4D1" area={"main"}>
-          <Flex justifyContent={"center"}>
-            <SearchBar
-              setSearchInput={setSearchInput}
-              handleClick={handleClick}
-            />
-          </Flex>
-          <Flex
-            m={"0.5rem 1rem"}
-            justifyContent={"flex-start"}
-            flexWrap={"wrap"}
-            border="1px solid red"
-          >
-            {searchedFilteredEvents.map((event) => {
-              return (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  categories={categories}
-                />
-              );
-            })}
-          </Flex>
-        </GridItem>
-        {/* <GridItem pl="2" bg="#B4B4B3" area={"footer"}>
-          Footer
-        </GridItem> */}
-      </Grid>
-    </div>
+        </Flex>
+        <Flex m={"0.5rem 1rem"} justifyContent={"flex-start"} flexWrap={"wrap"}>
+          {searchedFilteredEvents.map((event) => {
+            return (
+              <EventCard key={event.id} event={event} categories={categories} />
+            );
+          })}
+        </Flex>
+      </Box>
+    </Flex>
   );
 };

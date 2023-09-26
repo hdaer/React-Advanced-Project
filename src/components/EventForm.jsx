@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import {
   Grid,
   GridItem,
@@ -11,7 +10,6 @@ import {
   Flex,
 } from "@chakra-ui/react";
 // import { useLoaderData, useNavigate } from "react-router-dom";
-
 import { MyTimePicker } from "./ui/MyTimePicker";
 import { MyDatePicker } from "./ui/MyDatePicker";
 
@@ -19,44 +17,34 @@ const dataFetcher = async () => {
   const events = await fetch("http://localhost:3000/events");
   const categories = await fetch("http://localhost:3000/categories");
   const users = await fetch("http://localhost:3000/users");
-
   return {
     users: await users.json(),
     events: await events.json(),
     categories: await categories.json(),
   };
 };
-
-const { users, events, categories } = await dataFetcher();
+const { users, categories } = await dataFetcher();
 
 export const EventForm = ({ formState, setFormState }) => {
-  // const { users, events, categories } = useLoaderData();
+  const date = formState.startTime.substring(0, 10);
+  const timeStart = formState.startTime.substring(11, 16);
+  const timeEnd = formState.endTime.substring(11, 16);
 
-  const todaysDate = new Date();
-  const todaysTime = `${todaysDate.getHours()}:${todaysDate.getMinutes()}`;
-
-  const [dateValue, setDateValue] = useState(todaysDate);
-  const [startTime, setStartTime] = useState(todaysTime);
-  const [endTime, setEndTime] = useState(todaysTime);
+  const [dateValue, setDateValue] = useState(date);
+  const [startTimeValue, setStartTimeValue] = useState(timeStart);
+  const [endTimeValue, setEndTimeValue] = useState(timeEnd);
   const [checked, setChecked] = useState([]);
 
   useEffect(() => {
-    const day = (dateValue.getDate() < 10 ? "0" : "") + dateValue.getDate();
-    const month =
-      (dateValue.getMonth() + 1 < 10 ? "0" : "") + (dateValue.getMonth() + 1);
-    const year = dateValue.getFullYear();
-    const newDate = `${year}-${month}-${day}`;
-
     setFormState({
       ...formState,
-      startTime: `${newDate}T${startTime}`,
-      endTime: `${newDate}T${endTime}`,
+      startTime: `${dateValue}T${startTimeValue}`,
+      endTime: `${dateValue}T${endTimeValue}`,
     });
-  }, [dateValue, startTime, endTime]);
+  }, [dateValue, startTimeValue, endTimeValue]);
 
   const handleChange = (e, index) => {
     let value = "";
-
     if (e.target.name == "createdBy") {
       value = parseInt(e.target.value, 10);
     } else if (e.target.name == "categoryIds") {
@@ -67,20 +55,16 @@ export const EventForm = ({ formState, setFormState }) => {
       } else {
         prev.push(index);
       }
-
       setChecked([...prev]);
-
       value = checked.map((index) => index + 1).sort();
     } else {
       value = e.target.value;
     }
-
     setFormState({
       ...formState,
       [e.target.name]: value,
     });
   };
-
   return (
     <FormControl isRequired>
       <Grid gap={30}>
@@ -94,17 +78,16 @@ export const EventForm = ({ formState, setFormState }) => {
             onChange={handleChange}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>Description</FormLabel>
           <Input
             type="text"
             name="description"
+            value={formState.description}
             placeholder={"description of event"}
             onChange={handleChange}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>Category</FormLabel>
           <Flex
@@ -126,7 +109,6 @@ export const EventForm = ({ formState, setFormState }) => {
             ))}
           </Flex>
         </GridItem>
-
         <GridItem>
           <FormLabel>Location</FormLabel>
           <Input
@@ -137,7 +119,6 @@ export const EventForm = ({ formState, setFormState }) => {
             onChange={handleChange}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>Date</FormLabel>
           <MyDatePicker
@@ -146,25 +127,22 @@ export const EventForm = ({ formState, setFormState }) => {
             setDateValue={setDateValue}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>Starting Time</FormLabel>
           <MyTimePicker
             name={"startTime"}
-            timeValue={startTime}
-            setTimeValue={setStartTime}
+            timeValue={startTimeValue}
+            setTimeValue={setStartTimeValue}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>End Time</FormLabel>
           <MyTimePicker
             name={"endTime"}
-            timeValue={endTime}
-            setTimeValue={setEndTime}
+            timeValue={endTimeValue}
+            setTimeValue={setEndTimeValue}
           />
         </GridItem>
-
         <GridItem>
           <FormLabel>Image URL</FormLabel>
           <Input

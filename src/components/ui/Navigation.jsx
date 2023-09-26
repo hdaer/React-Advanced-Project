@@ -7,7 +7,7 @@ export const Navigation = () => {
   const params = useParams();
 
   return (
-    <nav style={{ backgroundColor: "#B4B4B3", height: "75px" }}>
+    <nav style={{ backgroundColor: "#B4B4B3" }}>
       {Object.keys(params).length != 0 ? (
         <Flex height="100%" justifyContent="flex-start" alignItems="center">
           <Button color={"#26577C"} margin={"0.5rem 1rem"}>

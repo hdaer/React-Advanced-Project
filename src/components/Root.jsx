@@ -5,13 +5,22 @@ import { Footer } from "./ui/Footer";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 export const Root = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Navigation />
-      <Outlet />
-      <Footer />
+      <Grid w={"100vw"} h={"100vh"} gridTemplateRows={"auto 1fr auto"}>
+        <GridItem>
+          <Navigation />
+        </GridItem>
+        <GridItem>
+          <Outlet />
+        </GridItem>
+        <GridItem>
+          <Footer />
+        </GridItem>
+      </Grid>
     </LocalizationProvider>
   );
 };

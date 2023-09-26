@@ -11,35 +11,38 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { EventForm } from "./EventForm";
 
-export const EditModal = () => {
+export const EditModal = ({ event }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
 
   const [changedEventForm, setChangedEventForm] = useState({
-    title: "",
-    description: "",
-    categoryIds: [],
-    location: "",
-    startTime: "",
-    endTime: "",
-    image: "",
-    createdBy: null,
+    title: event.title,
+    description: event.description,
+    categoryIds: event.categoryIds,
+    location: event.location,
+    startTime: event.startTime,
+    endTime: event.endTime,
+    image: event.image,
+    createdBy: event.createdBy,
   });
 
+  // console.log(event.startTime);
+  // console.log(changedEventForm);
+
   const handleSubmit = async () => {
-    const newId = await fetch("http://localhost:3000/events", {
-      method: "PATCH",
+    await fetch(`http://localhost:3000/events/${event.id}`, {
+      method: "PUT",
       body: JSON.stringify(changedEventForm),
       headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((json) => json.id);
+    });
+    // .then((res) => res.json())
+    // .then((json) => json.id);
 
     toast({
       position: "bottom",
@@ -58,7 +61,8 @@ export const EditModal = () => {
       ),
     });
 
-    // navigate(`/event/${newId}`);
+    navigate(`/event/${event.id}`);
+    onClose();
   };
 
   return (
