@@ -13,17 +13,30 @@
   ],
   "events": [
     {
+      "id": 1,
+      "createdBy": 1,
+      "title": "Trampoline party",
+      "description": "Bounce around with your friends",
+      "image": "https://i.pinimg.com/736x/3d/2f/af/3d2faf4e3188d34a9fcdc00df59e77b0.jpg",
+      "categoryIds": [
+        2
+      ],
+      "location": "My back yard",
+      "startTime": "2023-03-10T18:00",
+      "endTime": "2023-03-10T17:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "createdBy": 1,
       "title": "Laser Tag mania",
       "description": "Let's play laser tag!",
+      "image": "https://www.ctvnews.ca/polopoly_fs/1.5118552.1600965663!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
       "categoryIds": [
         2
       ],
       "location": "Blinded by the Lights Laser Tag, 15 Main St.",
-      "startTime": "Wed Sep 13 2023 00:00:00 GMT+0200 (Midden-Europese zomertijd)T11:11",
-      "endTime": "Wed Sep 13 2023 00:00:00 GMT+0200 (Midden-Europese zomertijd)T11:33",
-      "image": "https://www.ctvnews.ca/polopoly_fs/1.5118552.1600965663!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
-      "createdBy": 1,
-      "id": 2
+      "startTime": "2023-04-06T18:46",
+      "endTime": "2023-04-06T17:46"
     },
     {
       "id": 3,
@@ -53,7 +66,7 @@
       "endTime": "2023-03-09T07:00:00.000Z"
     },
     {
-      "title": "myEvent with a new title and new dates/times",
+      "title": "game event",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat tortor mauris, vitae facilisis ligula euismod in. Proin sit amet consequat ante. Nullam commodo, quam in volutpat ultrices, neque lorem congue sem, aliquet mollis ante sem nec diam. Curabitur nec lacus euismod, hendrerit sapien sed, sollicitudin ex. Mauris sapien nisl.",
       "categoryIds": [
         3
@@ -66,84 +79,47 @@
       "id": 5
     },
     {
-      "title": "the is the last and final Title",
-      "description": "new description right hur. read it and weep.",
+      "title": "another event",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "categoryIds": [
         1,
         2,
         3
       ],
       "location": "wassenaar",
-      "startTime": "2023-09-26Tundefined",
-      "endTime": "2023-09-26Tundefined",
+      "startTime": "2030-07-17T01:00",
+      "endTime": "2030-07-17T02:00",
       "image": "https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_HyperLightDrifterSpecialEdition_enGB_image1600w.jpg",
       "createdBy": 2,
       "id": 6
     },
     {
-      "title": "testEffie4",
-      "description": "write your poems here",
+      "title": "game days",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum.",
       "categoryIds": [
         1,
         3
       ],
       "location": "brusselsMussels",
-      "startTime": "2023-9-29T20:18",
-      "endTime": "",
+      "startTime": "2030-07-17T01:00",
+      "endTime": "2030-07-17T02:00",
       "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/248820/capsule_616x353.jpg?t=1577387901",
       "createdBy": 1,
       "id": 8
     },
     {
-      "title": "Another eventstest",
-      "description": "here some texty, Lorem and all that",
+      "title": "New testTitle",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?",
       "categoryIds": [
         1,
         2
       ],
       "location": "Roermond",
-      "startTime": "2023-11-23T16:57",
-      "endTime": "",
+      "startTime": "2030-07-17T01:00",
+      "endTime": "2030-07-17T02:00",
       "image": "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/08/06/d4924c36/braid.jpg",
       "createdBy": 1,
       "id": 10
-    },
-    {
-      "title": "dateTest",
-      "description": "test the date",
-      "categoryIds": [
-        3
-      ],
-      "location": "milan",
-      "startTime": "",
-      "endTime": "Tue Sep 26 2023 11:26:11 GMT+0200 (Midden-Europese zomertijd)T11:12",
-      "image": "image.com",
-      "createdBy": 1,
-      "id": 11
-    },
-    {
-      "title": "a new event",
-      "description": "newNew exciting",
-      "categoryIds": [
-        2
-      ],
-      "location": "new york",
-      "startTime": "2023-09-29T11:11",
-      "endTime": "2023-09-29T12:12",
-      "image": "dfghdfghfh",
-      "createdBy": 1,
-      "id": 12
-    },
-    {
-      "title": "",
-      "description": "",
-      "categoryIds": [],
-      "location": "asd",
-      "startTime": "2023-09-13T11:11",
-      "endTime": "2023-09-13T",
-      "image": "",
-      "createdBy": null,
-      "id": 13
     }
   ],
   "categories": [

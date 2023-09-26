@@ -9,8 +9,6 @@ import {
   Grid,
 } from "@chakra-ui/react";
 
-// import { EditModal } from "../components/EditModal";
-
 import { EditModal } from "../components/EditModal";
 import { DeleteModal } from "../components/DeleteModal";
 

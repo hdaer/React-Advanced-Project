@@ -16,7 +16,6 @@ export const MyDatePicker = ({ dateValue, setDateValue }) => {
     <>
       <DatePicker
         onChange={handleChange}
-        // onChange={(date) => setDateValue(date)}
         clearIcon={null}
         calendarIcon={null}
         value={dateValue}

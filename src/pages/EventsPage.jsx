@@ -66,7 +66,7 @@ export const EventsPage = () => {
             handleClick={handleClick}
           />
         </Flex>
-        <Flex m={"0.5rem 1rem"} justifyContent={"flex-start"} flexWrap={"wrap"}>
+        <Flex m={"0.5rem 1rem"} justifyContent={"center"} flexWrap={"wrap"}>
           {searchedFilteredEvents.map((event) => {
             return (
               <EventCard key={event.id} event={event} categories={categories} />

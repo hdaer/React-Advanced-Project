@@ -11,7 +11,6 @@ import {
   useToast,
   Box,
   Flex,
-  Grid,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
@@ -35,6 +34,27 @@ export const NewEventModal = () => {
   });
 
   const handleSubmit = async () => {
+    // check if 'new event form' has empty fields; if so, no POST will take place, but will display toast pop up message instead.
+    if (Object.values(newEventForm).some((x) => x.length === 0 || x === null)) {
+      toast({
+        position: "top",
+        render: () => (
+          <Box
+            textAlign="center"
+            fontSize="25"
+            fontWeight="bold"
+            color="white"
+            p={3}
+            bg="#E55604"
+            borderRadius="20px"
+          >
+            Please fill out all fields
+          </Box>
+        ),
+      });
+      return;
+    }
+
     const newId = await fetch("http://localhost:3000/events", {
       method: "POST",
       body: JSON.stringify(newEventForm),

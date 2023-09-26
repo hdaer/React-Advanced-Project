@@ -9,7 +9,7 @@ import {
   Checkbox,
   Flex,
 } from "@chakra-ui/react";
-// import { useLoaderData, useNavigate } from "react-router-dom";
+
 import { MyTimePicker } from "./ui/MyTimePicker";
 import { MyDatePicker } from "./ui/MyDatePicker";
 
@@ -30,11 +30,15 @@ export const EventForm = ({ formState, setFormState }) => {
   const timeStart = formState.startTime.substring(11, 16);
   const timeEnd = formState.endTime.substring(11, 16);
 
+  // date and time states in order to set these from child component with setter functions
   const [dateValue, setDateValue] = useState(date);
   const [startTimeValue, setStartTimeValue] = useState(timeStart);
   const [endTimeValue, setEndTimeValue] = useState(timeEnd);
+
+  // category checkbox state
   const [checked, setChecked] = useState([]);
 
+  // handle onChange events for datePicker and timePicker components
   useEffect(() => {
     setFormState({
       ...formState,
@@ -45,8 +49,12 @@ export const EventForm = ({ formState, setFormState }) => {
 
   const handleChange = (e, index) => {
     let value = "";
+
+    //make an integer of the createdBy string
     if (e.target.name == "createdBy") {
       value = parseInt(e.target.value, 10);
+
+      //add or remove category id from categoryIds array
     } else if (e.target.name == "categoryIds") {
       let prev = checked;
       let itemIndex = prev.indexOf(index);
@@ -57,6 +65,7 @@ export const EventForm = ({ formState, setFormState }) => {
       }
       setChecked([...prev]);
       value = checked.map((index) => index + 1).sort();
+      //regular strings inputs (title, description, location, imageURL)
     } else {
       value = e.target.value;
     }
@@ -66,7 +75,7 @@ export const EventForm = ({ formState, setFormState }) => {
     });
   };
   return (
-    <FormControl isRequired>
+    <FormControl>
       <Grid gap={30}>
         <GridItem>
           <FormLabel>Title</FormLabel>

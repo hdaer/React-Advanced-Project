@@ -32,17 +32,12 @@ export const EditModal = ({ event }) => {
     createdBy: event.createdBy,
   });
 
-  // console.log(event.startTime);
-  // console.log(changedEventForm);
-
   const handleSubmit = async () => {
     await fetch(`http://localhost:3000/events/${event.id}`, {
       method: "PUT",
       body: JSON.stringify(changedEventForm),
       headers: { "Content-Type": "application/json" },
     });
-    // .then((res) => res.json())
-    // .then((json) => json.id);
 
     toast({
       position: "bottom",

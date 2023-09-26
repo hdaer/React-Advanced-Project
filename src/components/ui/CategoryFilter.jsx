@@ -53,8 +53,6 @@ export const CategoryFilter = ({ events, categories, setFilteredEvents }) => {
 
   const { value, getCheckboxProps } = useCheckboxGroup();
 
-  // const [filteredCategories, setFilteredCategories] = useState([]);
-
   useEffect(() => {
     const filteredCategories = value.map(Number).sort(function (a, b) {
       return a - b;
