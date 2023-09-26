@@ -3,11 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Root } from "./components/Root";
-import {
-  EventPage,
-  loader as eventLoader,
-  // action as eventAction,
-} from "./pages/EventPage";
+import { EventPage, loader as eventLoader } from "./pages/EventPage";
 
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
 
@@ -39,6 +35,7 @@ const router = createBrowserRouter([
         element: <EventPage />,
         loader: eventLoader,
       },
+
       // {
       //   path: "/newevent",
       //   element: <NewEventPage />,

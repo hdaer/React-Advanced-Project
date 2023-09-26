@@ -1,26 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Flex } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
+import { Flex, Button } from "@chakra-ui/react";
+import { NewEventModal } from "../NewEventModal";
 
 export const Navigation = () => {
+  const params = useParams();
+
   return (
-    <nav>
-      <ul>
-        <Flex justifyContent={"center"} flexDirection={"row"} gap={"3em"}>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          {/* <li>
-            <Link to="/event/1">Event</Link>
-          </li>
-          <li>
-            <Link to="/newevent">New Event</Link>
-          </li>
-          <li>
-            <Link to="/testpage">Test Page</Link>
-          </li> */}
+    <nav style={{ backgroundColor: "#B4B4B3" }}>
+      {Object.keys(params).length != 0 ? (
+        <Flex height="100%" justifyContent="flex-start" alignItems="center">
+          <Button color={"#26577C"} margin={"0.5rem 1rem"}>
+            <Link to="/">All Events</Link>
+          </Button>
         </Flex>
-      </ul>
+      ) : (
+        <NewEventModal />
+      )}
     </nav>
   );
 };
