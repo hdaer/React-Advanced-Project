@@ -7,20 +7,6 @@ import { EventPage, loader as eventLoader } from "./pages/EventPage";
 
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
 
-// import {
-//   NewEventPage,
-//   loader as newEventLoader,
-//   action as newEventAction,
-// } from "./pages/NewEventPage";
-
-// import { TestPage } from "./pages/TestPage";
-// import {
-//   NewEventForm,
-//   loader as newEventLoader2,
-//   action as newEventModalAction,
-// } from "./components/NewEventForm";
-// import { DeleteModal } from "./components/DeleteModal";
-
 const router = createBrowserRouter([
   {
     element: <Root />,
@@ -35,25 +21,6 @@ const router = createBrowserRouter([
         element: <EventPage />,
         loader: eventLoader,
       },
-
-      // {
-      //   path: "/newevent",
-      //   element: <NewEventPage />,
-      //   loader: newEventLoader,
-      //   action: newEventAction,
-      // },
-      // {
-      //   path: "/testpage",
-      //   element: <TestPage />,
-      //   // loader: newEventLoader,
-      //   // action: newEventAction,
-      // },
-      // {
-      //   path: "/neweventModal",
-      //   element: <NewEventForm />,
-      //   loader: newEventLoader2,
-      //   action: newEventModalAction,
-      // },
     ],
   },
 ]);
